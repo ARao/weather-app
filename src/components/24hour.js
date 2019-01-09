@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BasicInfo from './BasicInfo'
-import { fetchHistories } from '../actions/historyActions'
-import { Link } from 'react-router-dom'
 
-class History extends Component {
+
+class Hour24 extends Component {
 
   componentWillMount(){
-    this.props.fetchHistories()
+    
   }
 
   render() {
@@ -53,4 +52,4 @@ const mapStateToProps = state =>({
       histories : state.weather.histories
 });
 
-export default connect(mapStateToProps, { fetchHistories })(History);
+// export default connect(mapStateToProps, { fetchHistories })(History);

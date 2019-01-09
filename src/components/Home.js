@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCurrent, fetchForecast } from '../actions/homeActions'; 
-import { NEXT_DAYS } from '../actions/types'
 import BasicInfo from './BasicInfo'
+import {Link} from 'react-router-dom'
 
 
 
@@ -20,8 +20,9 @@ class Home extends Component {
 
   render() {
 
-    const dayCard = this.props.forecastWeather.length === NEXT_DAYS  && this.props.forecastWeather.map( (day, index) =>{
-      return(
+    const dayCard = this.props.forecastWeather && this.props.forecastWeather.length > 0 && this.props.forecastWeather.map(
+       (day, index) =>{
+          return(
             <div key={`${day.forecast.forecastday[0].date}--${index}`} >
                 <h3>
                   {day.forecast.forecastday[0].date}
@@ -37,7 +38,7 @@ class Home extends Component {
             </div>
       )})
    
-    if (this.props.currentWeather){
+    if (this.props.currentWeather && this.props.currentWeather.current){
           return (
             <div>
               <h1>Weather</h1>
@@ -47,7 +48,8 @@ class Home extends Component {
                   <h4>{this.props.currentWeather.current.last_updated}</h4>
                 </div>
                 { dayCard }
-              <button>History</button>
+              <Link to="/history"><button> History </button></Link>
+              
             </div>
           );
     }
