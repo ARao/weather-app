@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import BasicInfo from './BasicInfo'
-import { fetchHistories } from '../actions/historyActions'
+import BasicInfo from '../basicInfo'
+import { fetchHistories } from '../../actions/historyActions'
 import { Link } from 'react-router-dom'
 
 class History extends Component {
@@ -22,24 +22,23 @@ class History extends Component {
           )
     })
     return (
-      <div>
-        <Link to="/home"><button>Back</button></Link>
+      <React.Fragment>
+        <Link  to="/home"><button className="btn btn-info mt-4" >Back</button></Link>
         <BasicInfo weather={this.props.histories && this.props.histories[0]}></BasicInfo>
         <hr/>
-        <table>
+        <table className="table table-striped">
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Min</th>
-              <th>Max</th>
+              <th scope="col" >Date</th>
+              <th scope="col" >Min</th>
+              <th scope="col" >Max</th>
             </tr>
           </thead>
           <tbody>
             {histories}
           </tbody>
         </table>
-
-      </div>
+      </React.Fragment>
     );
   }
 }

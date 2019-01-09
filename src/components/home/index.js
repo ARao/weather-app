@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCurrent, fetchForecast } from '../actions/homeActions'; 
-import BasicInfo from './BasicInfo'
+import { fetchCurrent, fetchForecast } from '../../actions/homeActions'; 
+import BasicInfo from '../basicInfo'
 import {Link} from 'react-router-dom'
-
+import './style.css'
 
 
 class Home extends Component {
@@ -23,34 +23,44 @@ class Home extends Component {
     const dayCard = this.props.forecastWeather && this.props.forecastWeather.length > 0 && this.props.forecastWeather.map(
        (day, index) =>{
           return(
-            <div key={`${day.forecast.forecastday[0].date}--${index}`} >
-                <h3>
+            <div className="col-md-2 p-4"  key={`${day.forecast.forecastday[0].date}--${index}`} >
+                <small>
                   {day.forecast.forecastday[0].date}
-                </h3>
+                </small>
                 <div>
                   <img src= {day.forecast.forecastday[0].day.condition.icon} alt="weather icon"/>
                 </div>
-                <div>{day.forecast.forecastday[0].day.condition.text}</div>
+                <small>{day.forecast.forecastday[0].day.condition.text}</small>
                 <div>
-                  <span>{day.forecast.forecastday[0].day.mintemp_c}</span> ------
-                  <span>{day.forecast.forecastday[0].day.maxtemp_c}</span>
+                  <small>{day.forecast.forecastday[0].day.mintemp_c}</small>
+                  <small>{day.forecast.forecastday[0].day.maxtemp_c}</small>
                 </div>
             </div>
       )})
    
     if (this.props.currentWeather && this.props.currentWeather.current){
           return (
-            <div>
-              <h1>Weather</h1>
-                <BasicInfo weather={this.props.currentWeather} ></BasicInfo>
-                <div>
-                  <h2>{this.props.currentWeather.current.temp_c}</h2>
-                  <h4>{this.props.currentWeather.current.last_updated}</h4>
+            <React.Fragment>
+              <div className="row">
+                <div className="mr-auto">
+                  <h1 >Weather</h1>
                 </div>
-                { dayCard }
-              <Link to="/history"><button> History </button></Link>
+              </div>
               
-            </div>
+              <BasicInfo weather={this.props.currentWeather} ></BasicInfo>
+              
+              <div className="row">
+                <div className="ml-auto">
+                      <span className="p-2" >{this.props.currentWeather.current.temp_c} <sup>o</sup>C</span>
+                      <span className="p-2" >{this.props.currentWeather.current.last_updated}</span>
+                </div>
+              </div>
+              
+              <div className="row">
+                  { dayCard }
+              </div>
+              <Link to="/history"><button className="btn btn-success"> History </button></Link>
+            </React.Fragment>
           );
     }
     return null
