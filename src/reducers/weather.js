@@ -1,4 +1,4 @@
-import { CURRENT_WEATHER, FORECAST_WEATHER, HISTORY_WEATHER } from '../actions/types';
+import { CURRENT_WEATHER, FORECAST_WEATHER, HISTORY_WEATHER } from '../constants/actionConst';
 
 
 const initialState = {

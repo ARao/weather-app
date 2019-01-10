@@ -1,4 +1,7 @@
-import { CITY_NAME, KEY, HISTORY_WEATHER, historyWeatherUrl} from './types';
+import { CITY_NAME, KEY, HISTORY_DAYS} from '../constants/appConst';
+import { HISTORY_WEATHER } from '../constants/actionConst'
+import { historyWeatherUrl } from '../constants/apiUrl'
+
 
 historyWeatherUrl.searchParams.append('key', 'q', 'dt')
 
@@ -21,16 +24,18 @@ export const fetchHistories = () => dispatch => {
     });
   })
   .catch(err => {
-      console.log("error at homeAction ------->")
+      console.log( "error at homeAction ------->" )
       console.log(err)
   })
   
 }
 
 function *getNextDate(){
-  let today = new Date();
-  for( let i = today.getDate()-7; i < today.getDate(); i++ ){
-    yield  `${i}-${today.getMonth()+1}-${today.getFullYear()}`;
+  const today = new Date();
+  today.setDate(today.getDate()-HISTORY_DAYS);
+  for( let i = 0; i < HISTORY_DAYS; i++ ){
+    yield  `${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`;
+    today.setDate(today.getDate() + 1);
   }
   return ;
 }

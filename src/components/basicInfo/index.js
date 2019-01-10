@@ -17,7 +17,13 @@ class BasicInfo extends Component {
                 </div>
             );
         }
-        return null;
+        return (
+            <div className="row">
+                    <div className="ml-auto">
+                        <span>Info not availabel</span>
+                </div>
+            </div>
+        );
     }
 }
 

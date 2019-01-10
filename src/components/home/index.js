@@ -20,7 +20,7 @@ class Home extends Component {
          if (index === 0){
            return null
          }
-        return(
+        return (
             <div className="col-md-2 p-4"  key={`${day.date}--${index}` } >
               <small>
                 {day.date}
