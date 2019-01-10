@@ -14,54 +14,50 @@ class Home extends Component {
     this.props.fetchForecast()
   }
 
-  componentWillReceiveProps() {
-    
-  }
-
   render() {
 
     const dayCard = this.props.forecastWeather && this.props.forecastWeather.length > 0 && this.props.forecastWeather.map(
-       (day, index) =>{
+       (day, index) => {
           return(
             <div className="col-md-2 p-4"  key={`${day.forecast.forecastday[0].date}--${index}`} >
-                <small>
-                  {day.forecast.forecastday[0].date}
-                </small>
-                <div>
-                  <img src= {day.forecast.forecastday[0].day.condition.icon} alt="weather icon"/>
-                </div>
-                <small>{day.forecast.forecastday[0].day.condition.text}</small>
-                <div>
-                  <small>{day.forecast.forecastday[0].day.mintemp_c}</small>
-                  <small>{day.forecast.forecastday[0].day.maxtemp_c}</small>
-                </div>
+              <small>
+                {day.forecast.forecastday[0].date}
+              </small>
+              <div>
+                <img src= {day.forecast.forecastday[0].day.condition.icon} alt="weather icon"/>
+              </div>
+              <small>{day.forecast.forecastday[0].day.condition.text}</small>
+              <div>
+                <small>{day.forecast.forecastday[0].day.mintemp_c}</small>
+                <small>{day.forecast.forecastday[0].day.maxtemp_c}</small>
+              </div>
             </div>
-      )})
+    )});
    
     if (this.props.currentWeather && this.props.currentWeather.current){
-          return (
-            <React.Fragment>
-              <div className="row">
-                <div className="mr-auto">
-                  <h1 >Weather</h1>
-                </div>
-              </div>
-              
-              <BasicInfo weather={this.props.currentWeather} ></BasicInfo>
-              
-              <div className="row">
-                <div className="ml-auto">
-                      <span className="p-2" >{this.props.currentWeather.current.temp_c} <sup>o</sup>C</span>
-                      <span className="p-2" >{this.props.currentWeather.current.last_updated}</span>
-                </div>
-              </div>
-              
-              <div className="row">
-                  { dayCard }
-              </div>
-              <Link to="/history"><button className="btn btn-success"> History </button></Link>
-            </React.Fragment>
-          );
+      return (
+        <React.Fragment>
+          <div className="row">
+            <div className="mr-auto">
+              <h1 >Weather</h1>
+            </div>
+          </div>
+          
+          <BasicInfo weather={this.props.currentWeather} />
+          
+          <div className="row">
+            <div className="ml-auto">
+                  <span className="p-2" >{this.props.currentWeather.current.temp_c} <sup>o</sup>C</span>
+                  <span className="p-2" >{this.props.currentWeather.current.last_updated}</span>
+            </div>
+          </div>
+          
+          <div className="row">
+              { dayCard }
+          </div>
+          <Link to="/history"><button className="btn btn-success"> History </button></Link>
+        </React.Fragment>
+      );
     }
     return null
   }

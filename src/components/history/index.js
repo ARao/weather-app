@@ -45,11 +45,11 @@ class History extends Component {
 
 History.propTypes = {
   fetchHistories: PropTypes.func.isRequired,
-  histories : PropTypes.array
+  histories : PropTypes.array,
 };
 
 const mapStateToProps = state =>({
-      histories : state.weather.histories
+      histories : state.weather.histories,
 });
 
 export default connect(mapStateToProps, { fetchHistories })(History);
