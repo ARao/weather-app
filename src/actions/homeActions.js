@@ -1,6 +1,9 @@
 import { CITY_NAME, KEY,NEXT_DAYS } from '../constants/appConst';
 import { CURRENT_WEATHER, FORECAST_WEATHER } from '../constants/actionConst'
 import { currentWeatherUrl, forecastWeatherUrl }from '../constants/apiUrl'
+import interceptor from '../interceptor'
+
+interceptor();
 
 currentWeatherUrl.searchParams.append('key', 'q')
 forecastWeatherUrl.searchParams.append('key', 'q', 'days')

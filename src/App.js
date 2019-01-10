@@ -9,7 +9,12 @@ import Urls from './urls'
 
 class App extends Component {
   render() {
-    const routes = Object.keys(Urls).map(key => <Route key={`Route-${key}`} name={key} exact path={Urls[key].path} component={Urls[key].component } /> )
+    const routes = Object.keys(Urls)
+    .map(key => 
+          <Route key={`Route-${key}`} 
+          name={key} 
+          exact path={Urls[key].path} 
+          component={Urls[key].component } /> )
     
     return (
       <Provider store={store}>

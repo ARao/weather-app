@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`History connectd component +++ snapshot match 1`] = `
+<History
+  fetchHistories={[Function]}
+  histories={
+    Array [
+      Object {
+        "forecast": Object {
+          "forecastday": Array [
+            Object {
+              "date": "2019-01-03",
+              "date_epoch": 1546473600,
+              "day": Object {
+                "maxtemp_c": 23.5,
+                "mintemp_c": 14.9,
+                "mintemp_f": 58.8,
+              },
+            },
+          ],
+        },
+      },
+    ]
+  }
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+/>
+`;

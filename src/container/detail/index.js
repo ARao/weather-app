@@ -4,7 +4,7 @@ import { fetchForecast } from '../../actions/homeActions'
 import { Link } from 'react-router-dom'
 
 
-class Detail extends Component {
+export class Detail extends Component {
   
   componentWillMount(){
     if( !this.props.forecastWeather.forecast ){
@@ -69,9 +69,6 @@ class Detail extends Component {
     )
   }
 }
-
-History.propTypes = {
-};
 
 const mapStateToProps = state =>({
   forecastWeather : state.weather.forecast

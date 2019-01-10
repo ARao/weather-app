@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HistoryTable ++++ snapshot match 1`] = `
+<table
+  className="table table-striped"
+>
+  <thead>
+    <tr>
+      <th
+        scope="col"
+      >
+        Date
+      </th>
+      <th
+        scope="col"
+      >
+        Min
+      </th>
+      <th
+        scope="col"
+      >
+        Max
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      key="2019-01-03--0"
+    >
+      <td>
+        2019-01-03
+      </td>
+      <td>
+        14.9
+      </td>
+      <td>
+        14.9
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

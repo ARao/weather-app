@@ -1,6 +1,6 @@
-import Home from './components/home';
-import History from './components/history';
-import Detail from './components/detail'
+import Home from './container/home';
+import History from './container/history';
+import Detail from './container/detail'
 
 export default  {
     home : {

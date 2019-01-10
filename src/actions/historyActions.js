@@ -2,6 +2,9 @@ import { CITY_NAME, KEY, HISTORY_DAYS} from '../constants/appConst';
 import { HISTORY_WEATHER } from '../constants/actionConst'
 import { historyWeatherUrl } from '../constants/apiUrl'
 
+import interceptor from '../interceptor'
+interceptor();
+
 
 historyWeatherUrl.searchParams.append('key', 'q', 'dt')
 

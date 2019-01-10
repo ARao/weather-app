@@ -4,9 +4,12 @@ import { CURRENT_WEATHER, FORECAST_WEATHER, HISTORY_WEATHER } from '../constants
 const initialState = {
   current : {},
   forecast: {},
+  histories: [],
 };
 
 export default function(state = initialState, action) {
+  // console.log(state, action)
+
   switch (action.type) {
     case CURRENT_WEATHER:
       return {
