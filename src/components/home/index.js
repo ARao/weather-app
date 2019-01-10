@@ -15,21 +15,25 @@ class Home extends Component {
   }
 
   render() {
-
-    const dayCard = this.props.forecastWeather && this.props.forecastWeather.length > 0 && this.props.forecastWeather.map(
+    const dayCard =  this.props.forecastWeather.forecast && this.props.forecastWeather.forecast.forecastday.map(
        (day, index) => {
-          return(
-            <div className="col-md-2 p-4"  key={`${day.forecast.forecastday[0].date}--${index}`} >
+         if (index === 0){
+           return null
+         }
+        return(
+            <div className="col-md-2 p-4"  key={`${day.date}--${index}` } >
               <small>
-                {day.forecast.forecastday[0].date}
+                {day.date}
               </small>
               <div>
-                <img src= {day.forecast.forecastday[0].day.condition.icon} alt="weather icon"/>
+              <Link to={`detail/${index}`} >
+                <img src= {day.day.condition.icon} alt="weather icon"/>
+              </Link>
               </div>
-              <small>{day.forecast.forecastday[0].day.condition.text}</small>
+              <small>{day.day.condition.text}</small>
               <div>
-                <small>{day.forecast.forecastday[0].day.mintemp_c}</small>
-                <small>{day.forecast.forecastday[0].day.maxtemp_c}</small>
+                <small className="pr-3 ">{day.day.mintemp_c}</small>
+                <small>{day.day.maxtemp_c}</small>
               </div>
             </div>
     )});
@@ -55,7 +59,7 @@ class Home extends Component {
           <div className="row">
               { dayCard }
           </div>
-          <Link to="/history"><button className="btn btn-success"> History </button></Link>
+          <Link to="history"><button className="btn btn-success"> History </button></Link>
         </React.Fragment>
       );
     }
@@ -67,12 +71,13 @@ Home.propTypes = {
   fetchCurrent: PropTypes.func.isRequired,
   fetchForecast : PropTypes.func.isRequired,
   currentWeather: PropTypes.object.isRequired,
-  forecastWeather: PropTypes.array.isRequired,
+  forecastWeather : PropTypes.object
 };
 
-const mapStateToProps = (state) => ({ 
+const mapStateToProps = (state) => {
+  return { 
   currentWeather : state.weather.current,
   forecastWeather : state.weather.forecast,
-});
+}};
 
 export default connect(mapStateToProps, { fetchCurrent, fetchForecast })(Home);

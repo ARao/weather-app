@@ -3,7 +3,7 @@ import { CURRENT_WEATHER, FORECAST_WEATHER, HISTORY_WEATHER } from '../actions/t
 
 const initialState = {
   current : {},
-  forecast: []
+  forecast: {},
 };
 
 export default function(state = initialState, action) {

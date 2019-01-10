@@ -11,7 +11,7 @@ class BasicInfo extends Component {
                         <h2 >{this.props.weather.location.name}</h2>
                         <h3 >{this.props.weather.location.country}</h3>
                         <h4 >
-                            <span>{this.props.weather.location.lat}</span>  --  <span>{this.props.weather.location.lon}</span>
+                            <span className="pr-2">{this.props.weather.location.lat}</span>  <span>{this.props.weather.location.lon}</span>
                         </h4>
                     </div>
                 </div>

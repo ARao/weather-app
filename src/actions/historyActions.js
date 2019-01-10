@@ -1,7 +1,6 @@
-import { CITY_NAME, KEY, HISTORY_WEATHER, historyWeatherUrl } from './types';
+import { CITY_NAME, KEY, HISTORY_WEATHER, historyWeatherUrl} from './types';
 
 historyWeatherUrl.searchParams.append('key', 'q', 'dt')
-
 
 export const fetchHistories = () => dispatch => {
   historyWeatherUrl.searchParams.set('key', KEY)

@@ -23,8 +23,8 @@ class History extends Component {
     })
     return (
       <React.Fragment>
-        <Link  to="/home"><button className="btn btn-info mt-4" >Back</button></Link>
-        <BasicInfo weather={this.props.histories && this.props.histories[0]}></BasicInfo>
+        <Link  to="/"><button className="btn btn-info mt-4" >Back</button></Link>
+        <BasicInfo weather={this.props.histories && this.props.histories[0]}/>
         <hr/>
         <table className="table table-striped">
           <thead>

@@ -4,7 +4,8 @@ import './App.css';
 import { Provider } from 'react-redux';
 
 import Home from './components/home';
-import History from './components/history'
+import History from './components/history';
+import Detail from './components/detail'
 import store from './store';
 
 class App extends Component {
@@ -13,9 +14,9 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="container">
-            <Route exact path="/" component={Home} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/history" component={History} />
+            <Route name="home" exact path="/" component={ Home } />
+            <Route name="history" exact path="/history" component={ History } />
+            <Route name="detail" exact path="/detail/:id" component={ Detail }></Route>
           </div >
         </Router>
       </Provider>

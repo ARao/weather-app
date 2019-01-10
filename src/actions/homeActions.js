@@ -2,7 +2,7 @@ import { CITY_NAME, KEY,NEXT_DAYS, CURRENT_WEATHER, FORECAST_WEATHER, currentWea
 
 
 currentWeatherUrl.searchParams.append('key', 'q')
-forecastWeatherUrl.searchParams.append('key', 'q', 'dt')
+forecastWeatherUrl.searchParams.append('key', 'q', 'days')
 
 export const fetchCurrent = ()=>dispatch =>{
   currentWeatherUrl.searchParams.set('key', KEY)
@@ -22,14 +22,10 @@ export const fetchForecast = () => dispatch =>{
 
   forecastWeatherUrl.searchParams.set('key', KEY)
   forecastWeatherUrl.searchParams.set('q', CITY_NAME)
-  let arr  = [];
-  for(let day of getNextDate()){
-    forecastWeatherUrl.searchParams.set('dt', day)
-    arr.push( fetch(forecastWeatherUrl.href) )
-  }
-  
-  Promise.all(arr)
-  .then(forecasts => Promise.all(forecasts.map( forecast => forecast.json() ) ) )
+  forecastWeatherUrl.searchParams.set('days', NEXT_DAYS)
+
+  fetch(forecastWeatherUrl.href)
+  .then(forecasts => forecasts.json()) 
   .then( forecasts => { 
     dispatch({
       type: FORECAST_WEATHER,
@@ -41,12 +37,4 @@ export const fetchForecast = () => dispatch =>{
     console.log(err)
   })
   
-}
-
-function *getNextDate(){
-  let today = new Date();
-  for(let i = 0; i< NEXT_DAYS; i++){
-    yield  `${today.getDate() + i}-${today.getMonth()+1}-${today.getFullYear()}`
-  }
-  return ;
 }
