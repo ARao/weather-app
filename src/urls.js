@@ -1,18 +1,23 @@
 import Home from './container/home';
 import History from './container/history';
 import Detail from './container/detail'
+import Error from './container/error'
 
-export default  {
-    home : {
-        path: "/",
-        component : Home
+export default {
+    home: {
+        path: "/home",
+        component: Home
     },
-    history : {
+    history: {
         path: "/history",
-        component : History
+        component: History
     },
-    detail : {
+    detail: {
         path: "/detail/:id",
-        component : Detail
+        component: Detail
+    },
+    error: {
+        path: "/error",
+        component: Error
     }
 }

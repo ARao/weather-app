@@ -1,39 +1,29 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ConnectedHistory from './index';
-import configureStore from 'redux-mock-store'
-// import { fetchHistories } from '../../actions/historyActions'
-
-
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import toJson from 'enzyme-to-json'
+import history from '../../__testData__/history.json'
+import { HISTORY_WEATHER } from '../../constants/actionConst'
 
 describe('History connectd component', () => {
-   const fetchHistories = jest.fn()
+  const fetchHistories = jest.fn()
+
+
   const initialState = {
-    weather :{
-      histories : [
-        {
-        "forecast": {
-          "forecastday": [
-            {
-                "date": "2019-01-03",
-                "date_epoch": 1546473600,
-                "day": {
-                    "maxtemp_c": 23.5,
-                    "mintemp_c": 14.9,
-                    "mintemp_f": 58.8,
-                  }
-                }
-              ]
-            }
-          }  
-        ]
-      }
+    weather: {
+      histories: [history]
     }
-  const mockStore  =  configureStore();
+  }
+
+  const middlewares = [thunk]
+  const mockStore = configureMockStore(middlewares);
   let wrapper, store;
-  beforeEach(()=>{
+
+  beforeEach(() => {
     store = mockStore(initialState);
-    wrapper = shallow(<ConnectedHistory store={ store } fetchHistories={ fetchHistories } /> )
+    wrapper = shallow(<ConnectedHistory store={store} fetchHistories={fetchHistories} />)
   })
 
   it('++++ render the connected(SMART) component', () => {
@@ -41,11 +31,12 @@ describe('History connectd component', () => {
   });
 
   it('++++ store should match', () => {
-    expect(wrapper.props().histories ).toEqual(initialState.weather.histories)
+    expect(wrapper.props().histories).toEqual(initialState.weather.histories)
   });
 
   it('+++ snapshot match', () => {
-      const renderedValue =  shallow(<ConnectedHistory store={store} fetchHistories={ fetchHistories } />)
-      expect(renderedValue).toMatchSnapshot();
+    const snap = toJson(wrapper.dive());
+    expect(snap).toMatchSnapshot();
   });
+
 });

@@ -8,17 +8,17 @@ import { Link } from 'react-router-dom'
 
 export class History extends Component {
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.fetchHistories()
   }
 
   render() {
     return (
       <React.Fragment>
-        <Link  to="/"><button className="btn btn-info mt-4" >Back</button></Link>
-        <BasicInfo weather={this.props.histories && this.props.histories[0]}/>
-        <hr/>
-        <HistoryTable histories={ this.props.histories }/>
+        <Link to="/"><button className="btn btn-info mt-4" >Back</button></Link>
+        <BasicInfo weather={this.props.histories && this.props.histories[0]} />
+        <hr />
+        <HistoryTable histories={this.props.histories} />
       </React.Fragment>
     );
   }
@@ -26,11 +26,11 @@ export class History extends Component {
 
 History.propTypes = {
   fetchHistories: PropTypes.func.isRequired,
-  histories : PropTypes.array,
+  histories: PropTypes.array,
 };
 
-const mapStateToProps = state =>({
-      histories : state.weather.histories,
+const mapStateToProps = state => ({
+  histories: state.weather.histories,
 });
 
 export default connect(mapStateToProps, { fetchHistories })(History);

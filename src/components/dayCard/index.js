@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './style.css'
 
-export class DayCard extends Component{
-    render(){
-        if (this.props.index && this.props.day){
+export class DayCard extends Component {
+    render() {
+        if (this.props.index && this.props.day) {
             return (
-                <Link to={`detail/${this.props.index}`} className="col-md-2 p-4 " key={`${this.props.day.date}--${this.props.index}` } >
+                <Link to={`detail/${this.props.index}`} className="col-md-2 p-4 " key={`${this.props.day.date}--${this.props.index}`} >
                     <small>
                         {this.props.day.date}
                     </small>
                     <div>
-                    <Link to={`detail/${this.props.index}`} >
-                        <img src= {this.props.day.day.condition.icon} alt="weather icon"/>
-                    </Link>
+                        <img src={this.props.day.day.condition.icon} alt="weather icon" />
                     </div>
                     <small>{this.props.day.day.condition.text}</small>
                     <div>
@@ -23,7 +21,7 @@ export class DayCard extends Component{
                 </Link>
             )
         }
-        if(this.props.index === 0){
+        if (this.props.index === 0) {
             return (
                 <React.Fragment>
                     <span></span>

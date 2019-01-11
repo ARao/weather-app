@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 export class TempInfo extends Component {
-    render(){
-        if (this.props.weather){
+    render() {
+        if (this.props.weather) {
             return (
                 <React.Fragment>
                     <span className="p-2" >{this.props.weather.temp_c} <sup>o</sup>C</span>
@@ -13,9 +13,9 @@ export class TempInfo extends Component {
         return (
             <React.Fragment>
                 <span> Info not available</span>
-            </React.Fragment> 
+            </React.Fragment>
         )
     }
 }
 
-export default TempInfo ;
+export default TempInfo;

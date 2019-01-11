@@ -17,14 +17,15 @@ describe('Basic', () => {
     }
   }
   let wrapper
-  beforeEach( ()=>{
-    wrapper = shallow(<BasicInfo weather={ weather } />);
-  }) 
-  
+  beforeEach(() => {
+    wrapper = shallow(<BasicInfo weather={weather} />);
+  })
+
   it('++++ render Basic', () => {
     expect(wrapper.length).toEqual(1);
   });
   it('++++ snapshot match ', () => {
+
     expect(wrapper).toMatchSnapshot();
-  }); 
+  });
 });
