@@ -1,24 +1,44 @@
 import React, { Component } from 'react';
-import interceptor from '../../interceptor'
 import ErrorView from '../../components/errorView'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
 export class Error extends Component {
-
+    constructor(props){
+        super(props)
+        this.state = {}
+    }
     componentDidMount() {
-        if (!interceptor.responseNotOkStatus) {
+        if (!this.props.interceptor.responseNotOkStatus) {
             this.props.history.push('/');
         }
     }
 
     componentWillUpdate() {
-        if (!interceptor.responseNotOkStatus) {
+        if (!this.props.interceptor.responseNotOkStatus) {
             this.props.history.push('/');
         }
     }
     render() {
         return (
-            <ErrorView status={interceptor.status} statusText={interceptor.statusText} />
+
+            <ErrorView status={this.props.interceptor.status} statusText={this.props.interceptor.statusText} />
         );
     }
 }
 
-export default Error;
+Error.propTypes = {
+    interceptor : PropTypes.object
+}
+
+Error.defaultProps = {
+    interceptor : {}
+}
+
+const mapStateToProps = (state) => {
+    return {
+      forecastWeather: state.weather.forecast,
+      interceptor : state.weather.interceptor 
+    }
+  };
+
+export default connect(mapStateToProps)( Error );

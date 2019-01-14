@@ -1,7 +1,7 @@
 import { CITY_NAME, KEY, NEXT_DAYS } from '../constants/appConst';
 import { CURRENT_WEATHER, FORECAST_WEATHER } from '../constants/actionConst'
 import { currentWeatherUrl, forecastWeatherUrl } from '../constants/apiUrl'
-
+import interceptor from '../interceptor'
 
 const currentWeatherUrlParams = new URL(currentWeatherUrl.href)
 const forecastWeatherUrlParams = new URL(forecastWeatherUrl.href)
@@ -15,13 +15,12 @@ export const fetchCurrent = () => dispatch => {
   currentWeatherUrlParams.searchParams.set('q', CITY_NAME)
 
   return fetch(currentWeatherUrlParams.href)
-    .then(res => {
-      return res.json()
-    })
+    .then(res => res.json())
     .then(weather => {
       dispatch({
         type: CURRENT_WEATHER,
-        payload: weather
+        payload: weather,
+        interceptor
       })
     }
     )
@@ -41,7 +40,8 @@ export const fetchForecast = () => dispatch => {
     .then(forecasts => {
       dispatch({
         type: FORECAST_WEATHER,
-        payload: forecasts
+        payload: forecasts,
+        interceptor
       });
     })
     .catch(err => {

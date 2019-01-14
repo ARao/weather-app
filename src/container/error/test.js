@@ -4,7 +4,6 @@ import { Error } from './index';
 
 
 describe('Error', () => {
-  const errorCode = 400;
   let wrapper
   const history = { push: jest.fn() }
 

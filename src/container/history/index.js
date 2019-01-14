@@ -3,20 +3,28 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BasicInfo from '../../components/basicInfo';
 import HistoryTable from '../../components/historyTable'
-import { fetchHistories } from '../../actions/historyActions'
+import { fetchHistories } from '../../actions/history'
 import { Link } from 'react-router-dom'
 
 export class History extends Component {
+  constructor(props){
+    super(props)
+    this.state = {}
+  }
 
   componentWillMount() {
-    this.props.fetchHistories()
+    if(this.props.histories.length === 0){
+      this.props.fetchHistories()
+    }
   }
 
   render() {
+    const {histories} = this.props 
+    
     return (
       <React.Fragment>
         <Link to="/"><button className="btn btn-info mt-4" >Back</button></Link>
-        <BasicInfo weather={this.props.histories && this.props.histories[0]} />
+        <BasicInfo weather={histories[0]} />
         <hr />
         <HistoryTable histories={this.props.histories} />
       </React.Fragment>
@@ -27,7 +35,13 @@ export class History extends Component {
 History.propTypes = {
   fetchHistories: PropTypes.func.isRequired,
   histories: PropTypes.array,
+  
 };
+
+History.defaultProps = {
+  histories: [],
+  fetchHistories : ()=> console.log('default fetch histories'),
+}
 
 const mapStateToProps = state => ({
   histories: state.weather.histories,

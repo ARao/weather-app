@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropsTypes from 'prop-types'
 
 export class TempInfo extends Component {
     render() {
@@ -16,6 +17,14 @@ export class TempInfo extends Component {
             </React.Fragment>
         )
     }
+}
+
+TempInfo.PropsTypes = {
+    weather: PropsTypes.object
+}
+
+TempInfo.defaultProps = {
+    weather : {}
 }
 
 export default TempInfo;

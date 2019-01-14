@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCurrent, fetchForecast } from '../../actions/homeActions';
+import { fetchCurrent, fetchForecast } from '../../actions/home';
 import BasicInfo from '../../components/basicInfo'
 import TempInfo from '../../components/tempInfo'
 import DayCard from '../../components/dayCard'
 import { Link } from 'react-router-dom'
 import './style.css'
-import interceptor from '../../interceptor'
-
-class Home extends Component {
 
 
-  componentWillMount() {
+export class Home extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {}
+  }
+
+  componentDidMount() {
     this.props.fetchCurrent();
     this.props.fetchForecast();
   }
 
   componentWillUpdate() {
-    if (interceptor.responseNotOkStatus) {
+    if (this.props.interceptor.responseNotOkStatus) {
       this.props.history.push('/error');
     }
   }
@@ -68,13 +72,23 @@ Home.propTypes = {
   fetchCurrent: PropTypes.func.isRequired,
   fetchForecast: PropTypes.func.isRequired,
   currentWeather: PropTypes.object.isRequired,
-  forecastWeather: PropTypes.object
+  forecastWeather: PropTypes.object.isRequired,
+  interceptor : PropTypes.object.isRequired,
 };
+
+Home.defaultProps = {
+  fetchCurrent : ()=>{console.log('default fetch current called')},
+  fetchForecast : ()=>{console.log('default fetch forecast called')},
+  currentWeather : {},
+  forecastWeather : {},
+  interceptor : {},
+}
 
 const mapStateToProps = (state) => {
   return {
     currentWeather: state.weather.current,
     forecastWeather: state.weather.forecast,
+    interceptor : state.weather.interceptor,
   }
 };
 

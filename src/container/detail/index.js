@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchForecast } from '../../actions/homeActions'
+import { fetchForecast } from '../../actions/home'
 import { Link } from 'react-router-dom'
-
+import PropsTypes from 'prop-types'
 
 export class Detail extends Component {
+  constructor(props){
+    super(props)
+    this.state = {}
+  }
 
   componentWillMount() {
-    if (!this.props.forecastWeather.forecast) {
+    if (Object.keys(this.props.forecastWeather) === 0) {
       this.props.fetchForecast()
     }
+    if (parseInt(this.props.match.params.id, 10) === 0 ||
+      this.props.match.params.id >= this.props.forecastWeather.forecast.forecastday.length) {
+      this.props.history.push('/');
+    }
+
   }
 
   render() {
     if (!this.props.forecastWeather.forecast) {
       return null
-    }
-
-    if (this.props.match.params.id === 0 ||
-      this.props.match.params.id >= this.props.forecastWeather.forecast.forecastday.length) {
-      this.props.history.push('/');
     }
 
     const astro = Object.keys(this.props.forecastWeather.forecast.forecastday[this.props.match.params.id].astro).map(key => {
@@ -70,8 +74,17 @@ export class Detail extends Component {
   }
 }
 
+Detail.propsTypes = {
+  fetchForecast : PropsTypes.func.isRequired,
+  forecastWeather : PropsTypes.object.isRequired
+}
+Detail.defaultProps = {
+  forecastWeather : {},
+  fetchForecast : () => console.log('default fetchForecast')
+}
 const mapStateToProps = state => ({
   forecastWeather: state.weather.forecast
 });
+
 
 export default connect(mapStateToProps, { fetchForecast })(Detail);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './style.css'
+import PropsTypes from 'prop-types'
 
 export class BasicInfo extends Component {
     render() {
@@ -28,8 +28,13 @@ export class BasicInfo extends Component {
     }
 }
 
-BasicInfo.propTypes = {
-    weather: PropTypes.object
+BasicInfo.PropsTypes = {
+    weather: PropsTypes.object
 }
+
+BasicInfo.defaultProps = {
+    weather: {}
+}
+
 
 export default BasicInfo

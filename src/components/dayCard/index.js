@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './style.css'
+import PropsTypes from 'prop-types'
 
 export class DayCard extends Component {
     render() {
@@ -35,5 +36,16 @@ export class DayCard extends Component {
         )
     }
 }
+
+DayCard.PropsTypes = {
+    index: PropsTypes.number,
+    day : PropsTypes.object
+}
+
+DayCard.defaultProps = {
+    index : 1,
+    day : {}
+}
+
 
 export default DayCard;

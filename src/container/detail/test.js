@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ConnectedDetail from './index';
+import { Detail } from './index'
 import configureStore from 'redux-mock-store'
 import forecast from '../../__testData__/forecast.json'
 import toJson from 'enzyme-to-json'
@@ -21,6 +22,10 @@ describe('Detail', () => {
     store = mockStore(initialState);
     wrapper = shallow(<ConnectedDetail store={store} fetchForecast={fetchForecast} match={{ params: { id: 1 } }} />)
   })
+
+  afterEach(() => {
+  })
+
   it('++++ render the connected(SMART) component', () => {
     expect(wrapper.length).toEqual(1);
   });
@@ -37,4 +42,11 @@ describe('Detail', () => {
     const snap = toJson(wrapper.dive());
     expect(snap).toMatchSnapshot();
   });
+  // it('++++ fetchForecast called', () =>{
+  //   wrapper = shallow(<Detail fetchForecast={ fetchForecast } match={{ params : { id: 1 }}} />)
+  //   const instance = wrapper.instance();
+  //   console.log('instance.props.forecastWeather', instance.props.forecastWeather)
+  //   const spy = jest.spyOn(instance.props, 'fetchForecast');
+  //   expect(spy).toHaveBeenCalled();
+  // })
 });

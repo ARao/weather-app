@@ -1,7 +1,7 @@
 import { CITY_NAME, KEY, HISTORY_DAYS } from '../constants/appConst';
 import { HISTORY_WEATHER } from '../constants/actionConst'
 import { historyWeatherUrl } from '../constants/apiUrl'
-
+import interceptor from '../interceptor'
 
 
 const historyWeatherUrlParam = new URL(historyWeatherUrl.href);
@@ -23,7 +23,8 @@ export const fetchHistories = () => dispatch => {
     .then(histories => {
       dispatch({
         type: HISTORY_WEATHER,
-        payload: histories
+        payload: histories,
+        interceptor
       });
     })
     .catch(err => {

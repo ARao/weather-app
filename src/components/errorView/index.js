@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.css'
-
+import PropsTypes from 'prop-types'
 
 export class ErrorView extends Component {
     render() {
@@ -17,6 +17,15 @@ export class ErrorView extends Component {
             </React.Fragment>
         );
     }
+}
+ErrorView.PropsTypes = {
+    status: PropsTypes.object,
+    statusText : PropsTypes.string
+}
+
+ErrorView.defaultProps = {
+    status : 404,
+    statusText : ""
 }
 
 export default ErrorView;

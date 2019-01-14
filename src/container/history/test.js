@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ConnectedHistory from './index';
+import { History } from './index'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import toJson from 'enzyme-to-json'
 import history from '../../__testData__/history.json'
-import { HISTORY_WEATHER } from '../../constants/actionConst'
 
 describe('History connectd component', () => {
   const fetchHistories = jest.fn()
@@ -17,13 +17,13 @@ describe('History connectd component', () => {
     }
   }
 
-  const middlewares = [thunk]
+  const middlewares = [ thunk ]
   const mockStore = configureMockStore(middlewares);
   let wrapper, store;
 
   beforeEach(() => {
     store = mockStore(initialState);
-    wrapper = shallow(<ConnectedHistory store={store} fetchHistories={fetchHistories} />)
+    wrapper = shallow(<ConnectedHistory store={store} fetchHistories={ fetchHistories } />)
   })
 
   it('++++ render the connected(SMART) component', () => {
@@ -38,5 +38,12 @@ describe('History connectd component', () => {
     const snap = toJson(wrapper.dive());
     expect(snap).toMatchSnapshot();
   });
-
+  it('++++ fetchHistories called', () =>{
+    wrapper = shallow(<History fetchHistories={ fetchHistories } />)
+    const instance = wrapper.instance();
+    const spy = jest.spyOn(instance.props, 'fetchHistories');
+    expect(spy).toHaveBeenCalled();
+  })
+  
+  
 });
