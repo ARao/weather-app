@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import BasicInfo from '../../components/basicInfo';
 import HistoryTable from '../../components/historyTable'
 import { fetchHistories } from '../../actions/history'
+import { loaderShow, loaderHide } from '../../actions/loader'
 import { Link } from 'react-router-dom'
 
 export class History extends Component {
@@ -14,7 +15,10 @@ export class History extends Component {
 
   componentWillMount() {
     if(this.props.histories.length === 0){
+      this.props.loaderShow()
       this.props.fetchHistories()
+      .then(res => this.props.loaderHide() )
+      .catch(error => console.log("something went wrong") )
     }
   }
 
@@ -34,17 +38,18 @@ export class History extends Component {
 
 History.propTypes = {
   fetchHistories: PropTypes.func.isRequired,
+  loaderHide : PropTypes.func.isRequired,
+  loaderShow : PropTypes.func.isRequired,
   histories: PropTypes.array,
   
 };
 
 History.defaultProps = {
   histories: [],
-  fetchHistories : ()=> console.log('default fetch histories'),
 }
 
 const mapStateToProps = state => ({
   histories: state.weather.histories,
 });
 
-export default connect(mapStateToProps, { fetchHistories })(History);
+export default connect(mapStateToProps, { fetchHistories, loaderHide, loaderShow })(History);

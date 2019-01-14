@@ -3,6 +3,8 @@ import { CURRENT_WEATHER, FORECAST_WEATHER } from '../constants/actionConst'
 import { currentWeatherUrl, forecastWeatherUrl } from '../constants/apiUrl'
 import interceptor from '../interceptor'
 
+
+
 const currentWeatherUrlParams = new URL(currentWeatherUrl.href)
 const forecastWeatherUrlParams = new URL(forecastWeatherUrl.href)
 
@@ -17,16 +19,17 @@ export const fetchCurrent = () => dispatch => {
   return fetch(currentWeatherUrlParams.href)
     .then(res => res.json())
     .then(weather => {
-      dispatch({
+      return Promise.resolve(dispatch({
         type: CURRENT_WEATHER,
         payload: weather,
         interceptor
-      })
+      }))
     }
     )
     .catch(err => {
       console.log("error at forecast home action ------------->")
       console.log(err);
+      return Promise.reject(err);
     });
 }
 export const fetchForecast = () => dispatch => {
@@ -38,14 +41,15 @@ export const fetchForecast = () => dispatch => {
   return fetch(forecastWeatherUrlParams.href)
     .then(forecasts => forecasts.json())
     .then(forecasts => {
-      dispatch({
+      return Promise.resolve(dispatch({
         type: FORECAST_WEATHER,
         payload: forecasts,
         interceptor
-      });
+      }));
     })
     .catch(err => {
       console.log("error at homeAction ------->")
       console.log(err)
+      return Promise.reject(err);
     })
 }

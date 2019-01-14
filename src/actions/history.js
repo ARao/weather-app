@@ -21,15 +21,16 @@ export const fetchHistories = () => dispatch => {
   return Promise.all(arr)
     .then(histories => Promise.all(histories.map(history => history.json())))
     .then(histories => {
-      dispatch({
+      return Promise.resolve(dispatch({
         type: HISTORY_WEATHER,
         payload: histories,
         interceptor
-      });
+      }));
     })
     .catch(err => {
       console.log("error at historyAction ------->")
       console.log(err)
+      return Promise.reject(err);
     })
 
 }

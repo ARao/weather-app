@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchForecast } from '../../actions/home'
+import {loaderShow, loaderHide} from '../../actions/loader'
 import { Link } from 'react-router-dom'
 import PropsTypes from 'prop-types'
 
@@ -12,7 +13,10 @@ export class Detail extends Component {
 
   componentWillMount() {
     if (Object.keys(this.props.forecastWeather) === 0) {
+      this.props.loaderShow()
       this.props.fetchForecast()
+      .then( res => this.props.loaderHide)
+      .catch( err => console.log('failed to fetch detail'))
     }
     if (parseInt(this.props.match.params.id, 10) === 0 ||
       this.props.match.params.id >= this.props.forecastWeather.forecast.forecastday.length) {
@@ -76,15 +80,16 @@ export class Detail extends Component {
 
 Detail.propsTypes = {
   fetchForecast : PropsTypes.func.isRequired,
+  loaderHide : PropsTypes.func.isRequired,
+  loaderShow : PropsTypes.func.isRequired,
   forecastWeather : PropsTypes.object.isRequired
 }
 Detail.defaultProps = {
   forecastWeather : {},
-  fetchForecast : () => console.log('default fetchForecast')
 }
 const mapStateToProps = state => ({
   forecastWeather: state.weather.forecast
 });
 
 
-export default connect(mapStateToProps, { fetchForecast })(Detail);
+export default connect(mapStateToProps, { fetchForecast, loaderHide, loaderShow })(Detail);

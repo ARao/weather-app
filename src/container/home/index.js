@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCurrent, fetchForecast } from '../../actions/home';
+import { loaderShow, loaderHide } from '../../actions/loader'
 import BasicInfo from '../../components/basicInfo'
 import TempInfo from '../../components/tempInfo'
 import DayCard from '../../components/dayCard'
@@ -13,23 +14,44 @@ export class Home extends Component {
 
   constructor(props){
     super(props)
-    this.state = {}
+    this.state = {
+      ready : false
+    }
+    this.fetchData.bind(this);
+
+  }
+
+  fetchData(){
+    if(Object.keys(this.props.currentWeather).length ===  0 || Object.keys(this.props.forecastWeather).length === 0 ){
+      this.setState({'ready': false})
+      this.props.loaderShow();
+      Promise.all([this.props.fetchCurrent(),this.props.fetchForecast()])
+      .then(res => {
+        this.props.loaderHide();
+        this.setState({'ready': true})
+      })
+      .catch(err => this.props.loaderHide());
+    }else{
+      this.setState({ready : true});
+      this.props.loaderHide();
+    }
   }
 
   componentDidMount() {
-    this.props.fetchCurrent();
-    this.props.fetchForecast();
+    this.fetchData()
   }
 
   componentWillUpdate() {
     if (this.props.interceptor.responseNotOkStatus) {
       this.props.history.push('/error');
     }
+    // this.fetchData()
   }
 
 
+
   render() {
-    if (this.props.currentWeather.current && this.props.forecastWeather.forecast) {
+    if (this.state.ready) {
       return (
         <React.Fragment>
           <div className="row">
@@ -57,7 +79,7 @@ export class Home extends Component {
 
         </React.Fragment>
       )
-    };
+    }
     return (
       <React.Fragment>
         <div className="row">
@@ -71,14 +93,14 @@ export class Home extends Component {
 Home.propTypes = {
   fetchCurrent: PropTypes.func.isRequired,
   fetchForecast: PropTypes.func.isRequired,
+  loaderHide : PropTypes.func.isRequired,
+  loaderShow : PropTypes.func.isRequired,
   currentWeather: PropTypes.object.isRequired,
   forecastWeather: PropTypes.object.isRequired,
   interceptor : PropTypes.object.isRequired,
 };
 
 Home.defaultProps = {
-  fetchCurrent : ()=>{console.log('default fetch current called')},
-  fetchForecast : ()=>{console.log('default fetch forecast called')},
   currentWeather : {},
   forecastWeather : {},
   interceptor : {},
@@ -92,4 +114,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, { fetchCurrent, fetchForecast })(Home);
+export default connect(mapStateToProps, { fetchCurrent, fetchForecast, loaderHide, loaderShow })(Home);
