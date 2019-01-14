@@ -5,14 +5,25 @@ export class HistoryTable extends Component {
     
     render() {
         const Historyrow = this.props.histories.length > 0 && this.props.histories
-            .map((history, index) =>{
-                return (  
-                <tr key={`${history.forecast.forecastday[0].date}--${index}`} >
-                    <td>{history.forecast.forecastday[0].date}</td>
-                    <td>{history.forecast.forecastday[0].day.mintemp_c}</td>
-                    <td>{history.forecast.forecastday[0].day.mintemp_c}</td>
-                </tr>
-            )}
+            .map((history, index) => {
+                if(history.forecast && history.forecast.forecastday[0]){
+                    return (  
+                    <tr key={`${history.forecast.forecastday[0].date}--${index}`} >
+                        <td>{history.forecast.forecastday[0].date}</td>
+                        <td>{history.forecast.forecastday[0].day.mintemp_c}</td>
+                        <td>{history.forecast.forecastday[0].day.mintemp_c}</td>
+                    </tr>
+                    )
+                }else {
+                    return (
+                        <tr key={`historyError--${index}`} >
+                        <td> Something wrong </td>
+                        <td> Something wrong </td>
+                        <td> Something wrong </td>
+                    </tr>
+                    )
+                }
+            }
             )
         return (
             <table className="table table-striped">
