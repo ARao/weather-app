@@ -9,9 +9,17 @@ import current from '../../__testData__/current.json'
 import forecast from '../../__testData__/forecast.json'
 
 
-let fetchCurrent = jest.fn( )
-let fetchForecast = jest.fn( )
+const fetchCurrent = jest.fn( )
+const fetchForecast = jest.fn( )
+const loaderShow = jest.fn()
+const loaderHide = jest.fn()
 
+const props = {
+  fetchCurrent,
+  fetchForecast,
+  loaderHide,
+  loaderShow
+}
 
 describe('Home connectd component', () => {
 
@@ -27,7 +35,7 @@ describe('Home connectd component', () => {
 
   beforeEach(() => {
     store = mockStore(initialState);
-    wrapper = shallow(<ConnectedHome store={ store }/>)
+    wrapper = shallow(<ConnectedHome store={ store } {...props} />)
   })
 
 
@@ -52,14 +60,14 @@ describe('Home connectd component', () => {
   });
 
   it('++++ fetchForecast called', () =>{
-    wrapper = shallow(<Home fetchCurrent={fetchCurrent} fetchForecast={fetchForecast} />)
+    wrapper = shallow(<Home {...props} />)
     const instance = wrapper.instance();
     const spy = jest.spyOn(instance.props, 'fetchForecast');
     expect(spy).toHaveBeenCalled();
   })
 
   it('++++ fetchCurrent called', () =>{
-    wrapper = shallow(<Home fetchCurrent={ fetchCurrent } fetchForecast={ fetchForecast }/>)
+    wrapper = shallow(<Home {...props}/>)
     const instance = wrapper.instance();
     const spy = jest.spyOn(instance.props, 'fetchCurrent' );
     expect(spy).toHaveBeenCalled();

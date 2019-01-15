@@ -8,8 +8,16 @@ import toJson from 'enzyme-to-json'
 import history from '../../__testData__/history.json'
 
 describe('History connectd component', () => {
-  const fetchHistories = jest.fn()
+  const fetchHistories = jest.fn(()=>Promise.resolve())
 
+  const loaderShow = jest.fn();
+  const loaderHide = jest.fn();
+
+  const props = {
+    fetchHistories,
+    loaderShow,
+    loaderHide
+  }
 
   const initialState = {
     weather: {
@@ -23,7 +31,7 @@ describe('History connectd component', () => {
 
   beforeEach(() => {
     store = mockStore(initialState);
-    wrapper = shallow(<ConnectedHistory store={store} fetchHistories={ fetchHistories } />)
+    wrapper = shallow(<ConnectedHistory store={store} {...props} />)
   })
 
   it('++++ render the connected(SMART) component', () => {
@@ -39,7 +47,7 @@ describe('History connectd component', () => {
     expect(snap).toMatchSnapshot();
   });
   it('++++ fetchHistories called', () =>{
-    wrapper = shallow(<History fetchHistories={ fetchHistories } />)
+    wrapper = shallow(<History { ...props } />)
     const instance = wrapper.instance();
     const spy = jest.spyOn(instance.props, 'fetchHistories');
     expect(spy).toHaveBeenCalled();
