@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home connectd component +++ snapshot match 1`] = `
+<Fragment>
+  <div
+    className="row"
+  >
+    <div
+      className="mr-auto"
+    >
+      <h1>
+        Weather
+      </h1>
+    </div>
+  </div>
+  <BasicInfo
+    weather={
+      Object {
+        "current": Object {
+          "condition": Object {},
+        },
+        "location": Object {},
+      }
+    }
+  />
+  <div
+    className="row"
+  >
+    <div
+      className="ml-auto"
+    >
+      <TempInfo
+        weather={
+          Object {
+            "condition": Object {},
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <DayCard
+      day={
+        Object {
+          "astro": Object {},
+          "day": Object {
+            "condition": Object {},
+          },
+        }
+      }
+      index={0}
+      key="Daycard--0"
+    />
+    <DayCard
+      day={
+        Object {
+          "astro": Object {},
+          "day": Object {
+            "condition": Object {},
+          },
+        }
+      }
+      index={1}
+      key="Daycard--1"
+    />
+  </div>
+  <Link
+    replace={false}
+    to="history"
+  >
+    <button
+      className="btn btn-success"
+    >
+       History 
+    </button>
+  </Link>
+</Fragment>
+`;

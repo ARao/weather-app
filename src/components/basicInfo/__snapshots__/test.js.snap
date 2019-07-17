@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic ++++ snapshot match  1`] = `
+<div
+  className="row"
+>
+  <div
+    className="ml-auto"
+  >
+    <h2>
+      Paris
+    </h2>
+    <h3>
+      France
+    </h3>
+    <h4>
+      <span
+        className="pr-2"
+      >
+        48.87
+      </span>
+      <span>
+        2.33
+      </span>
+    </h4>
+  </div>
+</div>
+`;

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`History connectd component +++ snapshot match 1`] = `
+<Fragment>
+  <Link
+    replace={false}
+    to="/"
+  >
+    <button
+      className="btn btn-info mt-4"
+    >
+      Back
+    </button>
+  </Link>
+  <BasicInfo
+    weather={
+      Object {
+        "forecast": Object {
+          "forecastday": Array [
+            Object {
+              "astro": Object {},
+              "date": "2019-01-04",
+              "date_epoch": 1546560000,
+              "day": Object {},
+              "hour": Array [],
+            },
+          ],
+        },
+        "location": Object {},
+      }
+    }
+  />
+  <hr />
+  <HistoryTable
+    histories={
+      Array [
+        Object {
+          "forecast": Object {
+            "forecastday": Array [
+              Object {
+                "astro": Object {},
+                "date": "2019-01-04",
+                "date_epoch": 1546560000,
+                "day": Object {},
+                "hour": Array [],
+              },
+            ],
+          },
+          "location": Object {},
+        },
+      ]
+    }
+  />
+</Fragment>
+`;

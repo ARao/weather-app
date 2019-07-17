@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HistoryTable ++++ snapshot match 1`] = `
+<Fragment>
+  <span
+    className="p-2"
+  >
+    4
+     
+    <sup>
+      o
+    </sup>
+    C
+  </span>
+  <span
+    className="p-2"
+  >
+    2019-01-10 21:45
+  </span>
+</Fragment>
+`;

@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css';
 import { Provider } from 'react-redux';
 
-import Home from './components/home';
-import History from './components/history'
 import store from './store';
+import interceptor from './interceptor'
+import MainApp from './container/app'
+
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    interceptor.register()
+  }
+
   render() {
     return (
       <Provider store={store}>
-        <Router>
-          <div className="container">
-            <Route exact path="/" component={Home} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/history" component={History} />
-          </div >
-        </Router>
+        <MainApp/>
       </Provider>
     );
   }

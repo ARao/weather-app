@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not Found ++++ snapshot match 1`] = `
+<ErrorView
+  status="404"
+  statusText="Not Found"
+/>
+`;
