@@ -1,0 +1,23 @@
+{
+    "location": {},
+    "current": {
+        "condition": {}
+    },
+    "forecast": {
+        "forecastday": [
+            {
+                "day": {
+                    "condition": {}
+                },
+                "astro": {}
+            },
+            {
+                "day": {
+                    "condition": {}
+                },
+                "astro": {
+                }
+            }
+        ]
+    }
+}

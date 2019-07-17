@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Detail +++ snapshot match 1`] = `
+<div
+  className="mt-4 "
+>
+  <Link
+    replace={false}
+    to="/"
+  >
+     
+    <button
+      className="btn btn-info"
+    >
+      Back
+    </button>
+  </Link>
+  <div
+    className="row"
+  >
+    <div
+      className="mt-2 col-md-4 ml-auto"
+    >
+      <h5 />
+      <p>
+         
+      </p>
+      <img
+        alt="icon"
+      />
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-6 mx-auto"
+    >
+      <div
+        className="pt-2"
+      >
+        <span
+          className="mr-3"
+        >
+          Max Temp. 
+        </span>
+        <span>
+           
+          <sup>
+            o
+          </sup>
+          C 
+        </span>
+      </div>
+      <div
+        className="pt-2"
+      >
+        <span
+          className="mr-3"
+        >
+          Min Temp. 
+        </span>
+        <span>
+           
+          <sup>
+            o
+          </sup>
+          C 
+        </span>
+      </div>
+      <div
+        className="pt-2"
+      >
+        <span
+          className="mr-3"
+        >
+          Avg Temp. 
+        </span>
+        <span>
+           
+          <sup>
+            o
+          </sup>
+          C 
+        </span>
+      </div>
+      <div
+        className="pt-2"
+      >
+        <span
+          className="mr-3"
+        >
+          Max Wind 
+        </span>
+        <span>
+           kmph 
+        </span>
+      </div>
+      <div
+        className="pt-2"
+      >
+        <span
+          className="mr-3"
+        >
+          Avg Hummdity 
+        </span>
+        <span>
+            
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

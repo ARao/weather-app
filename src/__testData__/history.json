@@ -1,0 +1,14 @@
+{
+    "location": {},
+    "forecast": {
+        "forecastday": [
+            {
+                "date": "2019-01-04",
+                "date_epoch": 1546560000,
+                "day": {},
+                "astro": {},
+                "hour": []
+            }
+        ]
+    }
+}

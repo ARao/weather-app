@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DayCard ++++ snapshot match 1`] = `
+<Link
+  className="col-md-2 p-4 "
+  key="2019-01-10--1"
+  replace={false}
+  to="detail/1"
+>
+  <small>
+    2019-01-10
+  </small>
+  <div>
+    <img
+      alt="weather icon"
+      src="//cdn.apixu.com/weather/64x64/day/176.png"
+    />
+  </div>
+  <small>
+    Patchy rain possible
+  </small>
+  <div>
+    <small
+      className="pr-3 "
+    >
+      3.8
+    </small>
+    <small>
+      5
+    </small>
+  </div>
+</Link>
+`;
